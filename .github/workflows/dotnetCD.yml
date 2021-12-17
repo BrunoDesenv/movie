@@ -11,7 +11,7 @@ on:
 jobs:
   test:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
   
   deploy: 
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: test
     if: success() && github.ref == 'refs/heads/master' #Em caso de sucesso nos teste. Pega o ultimo commit da main
 
