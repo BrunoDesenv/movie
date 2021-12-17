@@ -8,8 +8,8 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Movie/Movie.csproj", "Movie/"]
-RUN dotnet restore "Movie/Movie.csproj"
+COPY ["Movie.csproj", "Movie/"]
+RUN dotnet restore "Movie.csproj"
 COPY . .
 WORKDIR "/src/Movie"
 RUN dotnet build "Movie.csproj" -c Release -o /app/build
