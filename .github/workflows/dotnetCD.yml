@@ -39,11 +39,21 @@ jobs:
         with:
           files: 'appsettings.json'
         env:
-          ConnectionStrings.Default: ${{secrets.DB_CONNECTION_STRING}} #Podemos pegar a string de conneção do secret 
-      # Essa parte é para realizar o deploy no PAAS do heroku
-      - uses: akhileshns/heroku-deploy@v3.12.12 #<-- módulo feito por akhileshns. Com ele é possível fazer o deploy no heroku
+          ConnectionStrings.Default: ${{secrets.DB_CONNECTION_STRING}} #Podemos pegar a string de conneÃ§Ã£o do secret 
+      # Essa parte Ã© para realizar o deploy no PAAS do heroku
+      - uses: akhileshns/heroku-deploy@v3.12.12 #<-- mÃ³dulo feito por akhileshns. Com ele Ã© possÃ­vel fazer o deploy no heroku
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "movieyouwatch"
           heroku_email: "bru_blink@hotmail.com"
           usedocker: true
+
+      - name: "Login to heroku registry"
+        run: heroku container:login
+
+      - name: "Build and push to heroku registry"
+        run: heroku container:push web --app email-service-web
+
+      - name: "Releases the container"
+        run: heroku container:release web --app email-service-web
+          
