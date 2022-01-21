@@ -46,14 +46,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "movieyouwatch"
           heroku_email: "bru_blink@hotmail.com"
-          usedocker: true
-
-      - name: "Login to heroku registry"
-        run: heroku container:login
-
-      - name: "Build and push to heroku registry"
-        run: heroku container:push web --app bestforyouwatch
-
-      - name: "Releases the container"
-        run: heroku container:release web --app bestforyouwatch
-          
+          usedocker: true         
